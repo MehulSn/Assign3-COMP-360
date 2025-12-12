@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh2dbn1paraf2"]
+
+[ext_resource type="PackedScene" uid="uid://qbea6w16ta0c" path="res://arm.glb" id="1_5qy1j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5qy1j"]
+radius = 0.35
+height = 2.1792
+
+[node name="arm" instance=ExtResource("1_5qy1j")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0265199, 1.3378, 0.0172431)
+shape = SubResource("CapsuleShape3D_5qy1j")
+
+[node name="SpringArmPivot" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68997, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="SpringArmPivot" index="0"]
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArmPivot/SpringArm3D" index="0"]
