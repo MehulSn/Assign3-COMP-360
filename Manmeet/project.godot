@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Robot arm"
-run/main_scene="uid://dv0oyjedwx6u"
+run/main_scene="uid://c8kcs2oenim85"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

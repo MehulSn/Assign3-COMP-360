@@ -1,10 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh2dbn1paraf2"]
+[gd_scene load_steps=7 format=3 uid="uid://catljbe5hukh1"]
 
 [ext_resource type="PackedScene" uid="uid://qbea6w16ta0c" path="res://arm.glb" id="1_5qy1j"]
+[ext_resource type="Script" uid="uid://bylb42qt1ipaj" path="res://oil_leak.gd" id="2_m8ymp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5qy1j"]
 radius = 0.35
 height = 2.1792
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wbqlu"]
+gravity = Vector3(0, -5, 0)
+scale_min = 0.1
+scale_max = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s02i6"]
+albedo_color = Color(1, 0.0901961, 0.0901961, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cl23y"]
+material = SubResource("StandardMaterial3D_s02i6")
+height = 0.1
 
 [node name="arm" instance=ExtResource("1_5qy1j")]
 
@@ -19,3 +32,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68997, 0)
 spring_length = 3.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArmPivot/SpringArm3D" index="0"]
+
+[node name="OilParticles" type="GPUParticles3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_wbqlu")
+draw_pass_1 = SubResource("SphereMesh_cl23y")
+script = ExtResource("2_m8ymp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
+
+[node name="GameMessageLabel" type="Label" parent="CanvasLayer" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
